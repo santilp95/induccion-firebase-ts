@@ -33,7 +33,11 @@ const usariosRef = db.collection('usuarios')
 //         activo: false
 //     })
 
-
+//delete from usuario where id ='xx'
+usariosRef.doc('kUsiLryr9JZIMusEfTVB')
+    .delete()
+    .then(resp=>console.log(resp))
+    .catch(e=>console.log('error',e))
 
 
 
