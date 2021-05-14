@@ -1,4 +1,5 @@
 import db  from './firebase/config'
+import { retornaDocumentos } from './helpers/mostrar-documentos'
 
 const usuario = {
     nombre: 'Fiona',
@@ -51,17 +52,22 @@ const usariosRef = db.collection('usuarios')
 //     })
 
 //se dispara cada evz que cambia la bd
-usariosRef
-    .onSnapshot(snap => {
-        const usuarios: any[] = []
+// usariosRef
+//     .onSnapshot(snap => {
+//         const usuarios: any[] = []
 
-        snap.forEach(snapHijo =>{
-            usuarios.push({
-                id: snapHijo.id,
-                ...snapHijo.data()
-            })
-        })
+//         snap.forEach(snapHijo =>{
+//             usuarios.push({
+//                 id: snapHijo.id,
+//                 ...snapHijo.data()
+//             })
+//         })
 
-        console.log(usuarios)
-    })
+//         console.log(usuarios)
+//     })
     
+//optimizar cofigo con el get es para no etsar mirando siempre
+// usariosRef
+//     .onSnapshot(snap=>retornaDocumentos(snap))
+
+usariosRef.get().then(retornaDocumentos)
