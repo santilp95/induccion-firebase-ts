@@ -70,4 +70,41 @@ const usariosRef = db.collection('usuarios')
 // usariosRef
 //     .onSnapshot(snap=>retornaDocumentos(snap))
 
-usariosRef.get().then(retornaDocumentos)
+// usariosRef.get().then(retornaDocumentos)
+
+/*
+    Select * from usuarios
+        where activos = true
+*/
+
+// usariosRef.where('activo','==',true).get().then(retornaDocumentos)
+
+/*
+    Select * from usuarios
+        where salario > 20
+*/
+
+// usariosRef.where('salario','>',20).get().then(retornaDocumentos)
+
+/*
+    Select * from usuarios
+        where salario > 50 and salario < 120
+        where salario between 50 and 120
+*/
+
+// usariosRef
+//     .where('salario','>',20)
+//     .where('salario','<',120)
+//     .get().then(retornaDocumentos)
+
+/*
+aca toca crear un indice
+    Select * from usuarios
+        where salario > 50
+            and activo == true
+*/
+
+usariosRef
+    .where('salario','>',20)
+    .where('activo','==',true)
+    .get().then(retornaDocumentos)
