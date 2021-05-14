@@ -34,11 +34,34 @@ const usariosRef = db.collection('usuarios')
 //     })
 
 //delete from usuario where id ='xx'
-usariosRef.doc('kUsiLryr9JZIMusEfTVB')
-    .delete()
-    .then(resp=>console.log(resp))
-    .catch(e=>console.log('error',e))
+// usariosRef.doc('kUsiLryr9JZIMusEfTVB')
+//     .delete()
+//     .then(()=>console.log('Borrado'))
+//     .catch(e=>console.log('error',e))
 
 
+//select * from usuarios
+// usariosRef
+//     .onSnapshot(snap => console.log(snap))
 
+// //aca primero mostramos que snaphijo tiene sus proto pero con data() optenemos los datos
+// usariosRef
+//     .onSnapshot(snap => {
+//         snap.forEach(snapHijo =>console.log(snapHijo.data()))
+//     })
+
+//se dispara cada evz que cambia la bd
+usariosRef
+    .onSnapshot(snap => {
+        const usuarios: any[] = []
+
+        snap.forEach(snapHijo =>{
+            usuarios.push({
+                id: snapHijo.id,
+                ...snapHijo.data()
+            })
+        })
+
+        console.log(usuarios)
+    })
     
