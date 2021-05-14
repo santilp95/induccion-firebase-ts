@@ -3,9 +3,11 @@ import db  from './firebase/config'
 const usuario = {
     nombre: 'Fiona',
     activo: true,
-    fechaNacimiento: 0
+    fechaNacimiento: 0,
+
 }
 
+const usariosRef = db.collection('usuarios')
 
 //insert into usario
 
@@ -15,3 +17,24 @@ const usuario = {
 //         console.log(docRef)
 //     })
 //     .catch(e=>console.log('error',e))
+
+
+
+// update usuarios set activo = false where ...
+// usariosRef
+//     .doc('ZtevqgyEZ7V2B9N4GURD')
+//     .update({
+//         activo: false
+//     })
+
+// usariosRef
+//     .doc('ZtevqgyEZ7V2B9N4GURD')
+//     .set({
+//         activo: false
+//     })
+
+
+
+
+
+    
