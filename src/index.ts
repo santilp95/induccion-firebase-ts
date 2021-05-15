@@ -5,13 +5,16 @@ import { retornaDocumentos } from './helpers/mostrar-documentos'
 const usariosRef = db.collection('usuarios')
 
 
-/*
-Ejemplo 2 nombres igiales pero quiero ordenar segun salario
- select*from usuarios order by nombre desc, salario asc
-*/
-usariosRef
-    .orderBy('nombre','desc')
-    .orderBy('salario','asc')
-    .get().then(retornaDocumentos)
+// usariosRef.limit(1)
+//     .get().then(retornaDocumentos)
 
+const btnNext = document.createElement('button');
+btnNext.innerText = 'Next Page';
+document.body.append(btnNext)
 
+btnNext.addEventListener('click',()=>{
+    console.log('click')
+})
+
+//simular el registro a penas carge la pagina
+btnNext.click()
