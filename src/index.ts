@@ -15,12 +15,13 @@ document.body.append(btnNext)
 //3 . saber cual es el ultimo documento que estamos buscando, por ejemplo hacer pagicnacion de 2 en 2
 // coger el ultimo registro luego los siguientes 2
 // tiene el mismo problema que cualquier bd y es que si alguien altera el orden puede cambiar
-let lastDocument = null
+let lastDocument:any = null
 
 btnNext.addEventListener('click',()=>{
     // console.log('click')
     const query = usariosRef
-                    .orderBy('nombre');
+                    .orderBy('nombre')
+                    .startAfter(lastDocument)
 
     query.limit(2).get().then(snap=>{
 
