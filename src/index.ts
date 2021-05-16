@@ -16,6 +16,7 @@ document.body.append(btnNext)
 // coger el ultimo registro luego los siguientes 2
 // tiene el mismo problema que cualquier bd y es que si alguien altera el orden puede cambiar
 let lastDocument:any = null
+let firstDocument:any = null
 
 btnNext.addEventListener('click',()=>{
     // console.log('click')
@@ -26,10 +27,31 @@ btnNext.addEventListener('click',()=>{
     query.limit(2).get().then(snap=>{
 
         //con esto optengo el ultimo documento de firebase
-        lastDocument = snap.docs[snap.docs.length - 1]
+        //si no existe mandamos null y mandamos la ultima pagina
+        firstDocument = snap.docs[0] || null
+        lastDocument = snap.docs[snap.docs.length - 1] || null
         retornaDocumentos(snap)
     })
 })
 
-//2.simular el registro a penas carge la pagina
-btnNext.click()
+
+// btnPrevius
+const btnPrevius = document.createElement('button');
+btnPrevius.innerText = 'Previus Page';
+document.body.append(btnPrevius)
+
+btnPrevius.addEventListener('click',()=>{
+    const query = usariosRef
+                    .orderBy('nombre')
+                    .endBefore(firstDocument)
+
+    query.limit(2).get().then(snap=>{
+        firstDocument = snap.docs[0] || null
+        lastDocument = snap.docs[snap.docs.length - 1] || null
+        retornaDocumentos(snap)
+    })
+})
+
+// //2.simular el registro a penas carge la pagina
+// btnNext.click()
+// btnPrevius.click()
